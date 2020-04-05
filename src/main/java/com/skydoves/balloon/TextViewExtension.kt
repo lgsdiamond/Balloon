@@ -21,8 +21,8 @@ import android.widget.TextView
 /** applies text form attributes to a TextView instance. */
 @Suppress("unused")
 internal fun TextView.applyTextForm(textForm: TextForm) {
-  text = textForm.text
-  textSize = textForm.textSize
-  setTextColor(textForm.textColor)
-  textForm.textTypeface?.let { typeface = it } ?: setTypeface(typeface, textForm.textStyle)
+    text = textForm.text
+    textSize = textForm.textSize
+    setTextColor(textForm.textColor)
+    textForm.textTypeface?.let { typeface = it } ?: setTypeface(typeface, textForm.textStyle)
 }

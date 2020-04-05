@@ -22,49 +22,49 @@ import android.content.SharedPreferences
 /** BalloonPreferenceManager helps to persist showing times. */
 internal class BalloonPersistence {
 
-  /** should show or not the popup. */
-  fun shouldShowUP(name: String, times: Int): Boolean {
-    return getTimes(name) < times
-  }
+    /** should show or not the popup. */
+    fun shouldShowUP(name: String, times: Int): Boolean {
+        return getTimes(name) < times
+    }
 
-  /** gets show-up times from the preference. */
-  fun getTimes(name: String): Int {
-    return sharedPreferenceManager.getInt(getPersistName(name), 0)
-  }
+    /** gets show-up times from the preference. */
+    fun getTimes(name: String): Int {
+        return sharedPreferenceManager.getInt(getPersistName(name), 0)
+    }
 
-  /** puts show-up times to the preference. */
-  fun putTimes(name: String, times: Int) {
-    sharedPreferenceManager.edit().putInt(getPersistName(name), times).apply()
-  }
+    /** puts show-up times to the preference. */
+    fun putTimes(name: String, times: Int) {
+        sharedPreferenceManager.edit().putInt(getPersistName(name), times).apply()
+    }
 
-  /** puts a incremented show-up times to the preference. */
-  fun putIncrementedTimes(name: String) {
-    putTimes(name, getTimes(name) + 1)
-  }
+    /** puts a incremented show-up times to the preference. */
+    fun putIncrementedTimes(name: String) {
+        putTimes(name, getTimes(name) + 1)
+    }
 
-  /** removes a showed times history from the preference. */
-  fun removePersistedData(name: String) =
-    sharedPreferenceManager.edit().remove(SHOWED_UP + name).apply()
+    /** removes a showed times history from the preference. */
+    fun removePersistedData(name: String) =
+        sharedPreferenceManager.edit().remove(SHOWED_UP + name).apply()
 
-  /** clears all of [Balloon] showed times history on the application. */
-  fun clearAllPersistedData() = sharedPreferenceManager.edit().clear().apply()
+    /** clears all of [Balloon] showed times history on the application. */
+    fun clearAllPersistedData() = sharedPreferenceManager.edit().clear().apply()
 
-  companion object {
-    @Volatile
-    private var instance: BalloonPersistence? = null
-    private lateinit var sharedPreferenceManager: SharedPreferences
-    private const val SHOWED_UP = "SHOWED_UP"
+    companion object {
+        @Volatile
+        private var instance: BalloonPersistence? = null
+        private lateinit var sharedPreferenceManager: SharedPreferences
+        private const val SHOWED_UP = "SHOWED_UP"
 
-    @JvmStatic
-    fun getInstance(context: Context): BalloonPersistence =
-      instance ?: synchronized(this) {
-        instance ?: BalloonPersistence().also {
-          instance = it
-          sharedPreferenceManager =
-            context.getSharedPreferences("com.skydoves.balloon", Context.MODE_PRIVATE)
-        }
-      }
+        @JvmStatic
+        fun getInstance(context: Context): BalloonPersistence =
+            instance ?: synchronized(this) {
+                instance ?: BalloonPersistence().also {
+                    instance = it
+                    sharedPreferenceManager =
+                        context.getSharedPreferences("com.skydoves.balloon", Context.MODE_PRIVATE)
+                }
+            }
 
-    fun getPersistName(name: String) = SHOWED_UP + name
-  }
+        fun getPersistName(name: String) = SHOWED_UP + name
+    }
 }

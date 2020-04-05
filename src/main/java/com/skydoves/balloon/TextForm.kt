@@ -31,7 +31,7 @@ annotation class TextFormDsl
 
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
 inline fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
-  TextForm.Builder(context).apply(block).build()
+    TextForm.Builder(context).apply(block).build()
 
 /**
  * TextFrom is an attribute class what has some attributes about TextView
@@ -39,51 +39,59 @@ inline fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextF
  */
 class TextForm(builder: Builder) {
 
-  val text: String = builder.text
-  @Sp val textSize: Float = builder.textSize
-  @ColorInt val textColor: Int = builder.textColor
-  val textStyle: Int = builder.textTypeface
-  val textTypeface: Typeface? = builder.textTypefaceObject
+    val text: String = builder.text
+    @Sp
+    val textSize: Float = builder.textSize
+    @ColorInt
+    val textColor: Int = builder.textColor
+    val textStyle: Int = builder.textTypeface
+    val textTypeface: Typeface? = builder.textTypefaceObject
 
-  /** Builder class for [TextForm]. */
-  @TextFormDsl
-  class Builder(val context: Context) {
-    @JvmField
-    var text: String = ""
-    @JvmField @Sp
-    var textSize: Float = 12f
-    @JvmField @ColorInt
-    var textColor = Color.WHITE
-    @JvmField
-    var textTypeface = Typeface.NORMAL
-    @JvmField
-    var textTypefaceObject: Typeface? = null
+    /** Builder class for [TextForm]. */
+    @TextFormDsl
+    class Builder(val context: Context) {
+        @JvmField
+        var text: String = ""
 
-    /** sets the content text of the form. */
-    fun setText(value: String): Builder = apply { this.text = value }
+        @JvmField
+        @Sp
+        var textSize: Float = 12f
 
-    /** sets the content text of the form using string resource. */
-    fun setTextResource(@StringRes value: Int): Builder = apply {
-      this.text = context.getString(value)
+        @JvmField
+        @ColorInt
+        var textColor = Color.WHITE
+
+        @JvmField
+        var textTypeface = Typeface.NORMAL
+
+        @JvmField
+        var textTypefaceObject: Typeface? = null
+
+        /** sets the content text of the form. */
+        fun setText(value: String): Builder = apply { this.text = value }
+
+        /** sets the content text of the form using string resource. */
+        fun setTextResource(@StringRes value: Int): Builder = apply {
+            this.text = context.getString(value)
+        }
+
+        /** sets the size of the text. */
+        fun setTextSize(@Sp value: Float): Builder = apply { this.textSize = value }
+
+        /** sets the color of the text. */
+        fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
+
+        /** sets the color of the text using resource. */
+        fun setTextColorResource(@ColorRes value: Int): Builder = apply {
+            this.textColor = context.contextColor(value)
+        }
+
+        /** sets the [Typeface] of the text. */
+        fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
+
+        /** sets the [Typeface] of the text. */
+        fun setTextTypeface(value: Typeface?): Builder = apply { this.textTypefaceObject = value }
+
+        fun build() = TextForm(this)
     }
-
-    /** sets the size of the text. */
-    fun setTextSize(@Sp value: Float): Builder = apply { this.textSize = value }
-
-    /** sets the color of the text. */
-    fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
-
-    /** sets the color of the text using resource. */
-    fun setTextColorResource(@ColorRes value: Int): Builder = apply {
-      this.textColor = context.contextColor(value)
-    }
-
-    /** sets the [Typeface] of the text. */
-    fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
-
-    /** sets the [Typeface] of the text. */
-    fun setTextTypeface(value: Typeface?): Builder = apply { this.textTypefaceObject = value }
-
-    fun build() = TextForm(this)
-  }
 }

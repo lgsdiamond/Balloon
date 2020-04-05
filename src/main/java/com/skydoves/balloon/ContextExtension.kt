@@ -24,31 +24,31 @@ import androidx.core.content.ContextCompat
 
 /** gets display size as a point. */
 internal fun Context.displaySize(): Point {
-  val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-  val display = wm.defaultDisplay
-  val size = Point()
-  display.getSize(size)
-  return size
+    val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    val display = wm.defaultDisplay
+    val size = Point()
+    display.getSize(size)
+    return size
 }
 
 /** dp size to px size. */
 internal fun Context.dp2Px(dp: Int): Int {
-  val scale = resources.displayMetrics.density
-  return (dp * scale).toInt()
+    val scale = resources.displayMetrics.density
+    return (dp * scale).toInt()
 }
 
 /** dp size to px size. */
 internal fun Context.dp2Px(dp: Float): Float {
-  val scale = resources.displayMetrics.density
-  return (dp * scale)
+    val scale = resources.displayMetrics.density
+    return (dp * scale)
 }
 
 /** gets a color from the resource. */
 internal fun Context.contextColor(resource: Int): Int {
-  return ContextCompat.getColor(this, resource)
+    return ContextCompat.getColor(this, resource)
 }
 
 /** gets a drawable from the resource. */
 internal fun Context.contextDrawable(resource: Int): Drawable? {
-  return ContextCompat.getDrawable(this, resource)
+    return ContextCompat.getDrawable(this, resource)
 }

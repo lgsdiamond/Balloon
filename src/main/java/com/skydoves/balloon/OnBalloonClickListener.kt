@@ -20,5 +20,5 @@ import android.view.View
 
 /** Interface definition for a callback to be invoked when a balloon view is clicked. */
 interface OnBalloonClickListener {
-  fun onBalloonClick(view: View)
+    fun onBalloonClick(view: View)
 }

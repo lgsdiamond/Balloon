@@ -27,24 +27,24 @@ import kotlin.reflect.KClass
  * tied to the given [lifecycleOwner], [clazz].
  */
 class ActivityBalloonLazy<out T : Balloon.Factory>(
-  private val context: Context,
-  private val lifecycleOwner: LifecycleOwner,
-  private val clazz: KClass<T>
+    private val context: Context,
+    private val lifecycleOwner: LifecycleOwner,
+    private val clazz: KClass<T>
 ) : Lazy<Balloon> {
 
-  private var cached: Balloon? = null
+    private var cached: Balloon? = null
 
-  override val value: Balloon
-    get() {
-      var instance = cached
-      if (instance == null) {
-        val factory = clazz::java.get().newInstance()
-        instance = factory.create(context, lifecycleOwner)
-        cached = instance
-      }
+    override val value: Balloon
+        get() {
+            var instance = cached
+            if (instance == null) {
+                val factory = clazz::java.get().newInstance()
+                instance = factory.create(context, lifecycleOwner)
+                cached = instance
+            }
 
-      return instance
-    }
+            return instance
+        }
 
-  override fun isInitialized() = cached != null
+    override fun isInitialized() = cached != null
 }

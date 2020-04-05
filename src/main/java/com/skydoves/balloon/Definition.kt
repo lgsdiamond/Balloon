@@ -30,9 +30,9 @@ const val LTR: Int = 1
 
 /** returns the negative of this value. */
 fun Int.unaryMinus(predicate: Boolean): Int {
-  return if (predicate) {
-    unaryMinus()
-  } else {
-    this
-  }
+    return if (predicate) {
+        unaryMinus()
+    } else {
+        this
+    }
 }

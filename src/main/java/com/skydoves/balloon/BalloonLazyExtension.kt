@@ -24,15 +24,15 @@ import kotlin.reflect.KClass
 /** returns a [Lazy] delegate to access the [ComponentActivity]'s Balloon property. */
 @MainThread
 inline fun <reified T : Balloon.Factory> ComponentActivity.balloon(
-  factory: KClass<T>
+    factory: KClass<T>
 ): Lazy<Balloon> {
-  return ActivityBalloonLazy(this, this, factory)
+    return ActivityBalloonLazy(this, this, factory)
 }
 
 /** returns a [Lazy] delegate to access the [Fragment]'s Balloon property. */
 @MainThread
 inline fun <reified T : Balloon.Factory> Fragment.balloon(
-  factory: KClass<T>
+    factory: KClass<T>
 ): Lazy<Balloon?> {
-  return FragmentBalloonLazy(this, this, factory)
+    return FragmentBalloonLazy(this, this, factory)
 }

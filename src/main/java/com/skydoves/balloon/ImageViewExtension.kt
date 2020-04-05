@@ -23,11 +23,11 @@ import androidx.core.widget.ImageViewCompat
 
 /** applies icon form attributes to a ImageView instance. */
 internal fun AppCompatImageView.applyIconForm(iconForm: IconForm) {
-  iconForm.drawable?.let {
-    setImageDrawable(it)
-    ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(iconForm.iconColor))
-    layoutParams = LinearLayout.LayoutParams(iconForm.iconSize, iconForm.iconSize)
-      .apply { setMargins(0, 0, iconForm.iconSpace, 0) }
-    visible(true)
-  }
+    iconForm.drawable?.let {
+        setImageDrawable(it)
+        ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(iconForm.iconColor))
+        layoutParams = LinearLayout.LayoutParams(iconForm.iconSize, iconForm.iconSize)
+            .apply { setMargins(0, 0, iconForm.iconSpace, 0) }
+        visible(true)
+    }
 }
