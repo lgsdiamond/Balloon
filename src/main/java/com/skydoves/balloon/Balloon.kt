@@ -56,8 +56,8 @@ inline fun createBalloon(context: Context, block: Balloon.Builder.() -> Unit): B
 @Suppress("MemberVisibilityCanBePrivate")
 @SuppressLint("InflateParams")
 open class Balloon(
-    private val context: Context,
-    private val builder: Builder
+    protected val context: Context,
+    protected val builder: Builder
 ) : LifecycleObserver {
 
     protected val bodyView: View
@@ -238,7 +238,7 @@ open class Balloon(
         }
     }
 
-    private fun initializeCustomLayout() {
+    open fun initializeCustomLayout() {
         bodyView.balloon_detail.removeAllViews()
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(builder.layout, bodyView.balloon_detail)

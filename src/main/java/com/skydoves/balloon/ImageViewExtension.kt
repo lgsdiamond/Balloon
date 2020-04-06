@@ -22,7 +22,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.widget.ImageViewCompat
 
 /** applies icon form attributes to a ImageView instance. */
-internal fun AppCompatImageView.applyIconForm(iconForm: IconForm) {
+fun AppCompatImageView.applyIconForm(iconForm: IconForm) {
     iconForm.drawable?.let {
         setImageDrawable(it)
         ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(iconForm.iconColor))
