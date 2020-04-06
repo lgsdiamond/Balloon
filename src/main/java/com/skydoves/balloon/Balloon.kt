@@ -55,12 +55,12 @@ inline fun createBalloon(context: Context, block: Balloon.Builder.() -> Unit): B
 /** Balloon implements showing and dismissing text popup with arrow and animations. */
 @Suppress("MemberVisibilityCanBePrivate")
 @SuppressLint("InflateParams")
-class Balloon(
+open class Balloon(
     private val context: Context,
     private val builder: Builder
 ) : LifecycleObserver {
 
-    private val bodyView: View
+    protected val bodyView: View
     private val bodyWindow: PopupWindow
     var isShowing = false
         private set
