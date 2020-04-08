@@ -240,6 +240,7 @@ open class Balloon(
 
     open fun initializeCustomLayout() {
         bodyView.balloon_detail.removeAllViews()
+
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(builder.layout, bodyView.balloon_detail)
     }
