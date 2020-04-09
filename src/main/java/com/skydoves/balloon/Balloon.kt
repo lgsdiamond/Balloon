@@ -600,7 +600,7 @@ open class Balloon(
 
     /** Builder class for creating [Balloon]. */
     @BalloonDsl
-    class Builder(private val context: Context) {
+    open class Builder(open val context: Context) {
         @JvmField
         @Dp
         var width: Int = NO_INT_VALUE
@@ -1001,7 +1001,7 @@ open class Balloon(
         /** sets flag for enabling rtl support */
         fun isRtlSupport(value: Boolean): Builder = apply { this.isRtlSupport = value }
 
-        fun build(): Balloon = Balloon(context, this@Builder)
+        open fun build(): Balloon = Balloon(context, this@Builder)
     }
 
     /**
@@ -1012,6 +1012,7 @@ open class Balloon(
     abstract class Factory {
 
         /** returns an instance of [Balloon]. */
+//        abstract fun create(context: Context, lifecycle: LifecycleOwner?): Balloon
         abstract fun create(context: Context, lifecycle: LifecycleOwner?): Balloon
     }
 }
