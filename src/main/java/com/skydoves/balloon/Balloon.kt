@@ -61,7 +61,7 @@ open class Balloon(
     protected val builder: Builder
 ) : LifecycleObserver {
 
-    protected lateinit var bdBalloon: LayoutBalloonBinding
+    protected var bdBalloon: LayoutBalloonBinding
     private val bodyView: View
     private val bodyWindow: PopupWindow
     var isShowing = false
