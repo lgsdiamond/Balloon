@@ -1,11 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-apply plugin: 'kotlin-kapt'                             // due to databinding
+apply plugin: 'kotlin-kapt'                             // for databinding
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    compileSdkVersion 29
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
@@ -13,11 +12,9 @@ android {
         versionName "1.0"
     }
 
-    buildTypes {
-        // for databinding
-        buildFeatures {
-            dataBinding true
-        }
+    // for databinding
+    buildFeatures {
+        dataBinding true
     }
 }
 
